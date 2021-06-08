@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Add New Employee Account</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Account Details</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save New Employee</p>
+	
+		<form th:action="@{/admin/saveAccount}"
+			  th:object="${staff}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<small class="form-text text-muted">Full Name:</small>			
+			<input type="text" th:field="*{name}"
+					class="form-control mb-4 col-4" placeholder="Full Name" required>
+
+			<small class="form-text text-muted">Username:</small>
+			<input type="text" th:field="*{username}" 
+					class="form-control mb-4 col-4" disabled>
+					
+			<input type="hidden" th:field="*{username}" 
+					class="form-control mb-4 col-4" >					
+
+			<small class="form-text text-muted">Password: <br \> *Default Password is 'password'</small>			
+			<input type="text" th:field="*{password}" 
+					class="form-control mb-4 col-4" disabled>
+					
+			<input type="hidden" th:field="*{password}" 
+					class="form-control mb-4 col-4" >					
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/admin/account}">Back to Employees List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

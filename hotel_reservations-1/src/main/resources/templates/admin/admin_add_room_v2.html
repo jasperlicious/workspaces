@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Add New Room/s</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<br>
+		<h3>Room Details</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save New Room</p>
+		<p class="h5 mb-4">Room Number is already existing.</p>
+	
+		<form th:action="@{/admin/saveRoom}"
+			  th:object="${room}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<small class="form-text text-muted">Room Number:</small>
+			<input type="text" th:field="*{number}"
+					class="form-control mb-4 col-4" placeholder="Room Number">
+	<!-- 
+			<input type="text" th:field="*{type}"
+					class="form-control mb-4 col-4" placeholder="Room Type">
+ -->
+ 			<small class="form-text text-muted">Room Price:</small>
+ 			<!-- 
+			<input type="text" th:field="*{price}"
+					class="form-control mb-4 col-4" placeholder="Room Price">
+			-->
+			<select th:field="*{price}" class="form-select form-control mb-4 col-4">
+    			<option th:each="i : ${#numbers.sequence(1000, 5000, 100)}" th:value="${i}" th:text="${i}">
+    			</option>
+			</select>
+					
+			<small class="form-text text-muted">Room Type: <br \> *Default Type is Standard</small>
+			<select th:field="*{type}" class="form-select form-control mb-4 col-4">
+			    <option selected th:value="'Standard'" th:text="Standard"></option>
+			    <option th:value="'Double'" th:text="Double"></option>
+			    <option th:value="'Triple'" th:text="Triple"></option>
+			    <option th:value="'Quad'" th:text="Quad"></option>
+			    <option th:value="'Queen'" th:text="Queen"></option>
+			    <option th:value="'King'" th:text="King"></option>
+			    <option th:value="'Twin'" th:text="Twin"></option>
+			</select>
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/admin/room}">Back to Room List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Update Room/s</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<br>
+		<h3>Room Details</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Update Room Details</p>
+
+		<form th:action="@{/user/userRoomReserveDetails}"
+			  th:object="${room}" method="POST">
+	
+			<input type="hidden" th:field="*{id}" /> <!-- Kailangan to! -->
+							
+			<small class="form-text text-muted">Room Number:</small>
+			<input type="text" th:field="*{number}"
+					class="form-control mb-4 col-4" placeholder="Room Number" disabled>
+					
+			<input type="hidden" th:field="*{number}"
+					class="form-control mb-4 col-4"> <!-- Kailangan to! -->
+
+ 			<small class="form-text text-muted">Room Type: </small>
+			<input type="text" th:field="*{type}"
+					class="form-control mb-4 col-4" disabled>	
+					
+			<input type="hidden" th:field="*{type}"
+					class="form-control mb-4 col-4">					
+					
+			<small class="form-text text-muted">Schedule Room From: </small> 
+			<input type="date" th:field="*{start}"
+					class="form-control mb-4 col-4" required>				
+			    
+			<small class="form-text text-muted">Schedule Room To: </small> 
+			<input type="date" th:field="*{end}"
+					class="form-control mb-4 col-4" required>			    
+			 									
+					
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+
+		<hr>
+		<a th:href="@{/user/room}">Back to Room List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

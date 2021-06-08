@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>User Directory</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" th:href="@{/user/dashboard}">Hotel Reservation System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">     
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/user/room}">Rooms</a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/user/reserve}">Reserved Rooms</a>
+      </li>      
+    </ul>
+        <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/logout}">
+      	<input type="submit" value="Logout" class="btn btn-outline-primary mt-2" />	
+    </form>
+  </div>
+</nav>
+
+<div class="container">
+
+	<div>
+	<br \>
+	<h3>List of Reserved Rooms</h3>
+	<hr>
+	</div>
+	<!-- 
+    <form action="#" class="form-inline">
+
+		<input class="form-control  ml-5 mr-sm-2 mb-3" type="search" name="employeeName" placeholder="Search by name" />
+		<button class="btn btn-success mb-3" type="submit">Search</button>	
+	 -->
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Number</th>
+				<th>Type</th>
+				<th>Reserved From</th>
+				<th>Reserved To</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempRoom : ${room}">
+			
+				<td th:text="${tempRoom.number}" />	
+				<td th:text="${tempRoom.type}" />
+				<td th:text="${tempRoom.start}" />
+				<td th:text="${tempRoom.end}" />		
+				
+				<td>
+					<div sec:authorize="hasAnyRole('USER')">
+
+						<a th:href="@{/user/userCancelReservation(roomID=${tempRoom.id})}"
+						   class="btn btn-info btn-sm"
+						   onclick="if (!(confirm('Are you sure you want to cancel the reservation of this room?'))) return false">
+							Cancel Reservation
+						</a>
+
+					</div>					
+				</td>
+				
+			</tr>
+		</tbody>		
+	</table>
+	</form>
+</div>
+	
+</body>
+</html>
+
+
+
