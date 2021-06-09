@@ -1,4 +1,0 @@
-runtime: java11
-instance_class: F4
-service: default
-entrypoint: java -noverify -jar hotel_reservations-1-0.0.1-SNAPSHOT.jar
