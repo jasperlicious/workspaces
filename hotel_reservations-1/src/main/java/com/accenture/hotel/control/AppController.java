@@ -62,7 +62,7 @@ public class AppController {
 		
 		@RequestMapping("/admin/dashboard")
 		public String adminDashboard() {
-			return "/admin/dashboard";
+			return "admin/dashboard";
 		}
 				//FOR ADMIN ACCOUNTS
 				@GetMapping("/admin/account")
