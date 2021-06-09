@@ -69,7 +69,7 @@ public class AppController {
 				public String showAccountPage(Model model) {
 					List<User> Users = userRepository.findAll();
 					model.addAttribute("users", Users);
-					return "/admin/accounts";
+					return "admin/accounts";
 				}		
 				
 				@GetMapping("/admin/adminAddAccount")
@@ -82,7 +82,7 @@ public class AppController {
 					String password = "password"+userNum;
 					Users.setPassword(password);
 					model.addAttribute("staff", Users);
-					return "/admin/admin_add_account";
+					return "admin/admin_add_account";
 				}
 				
 				@PostMapping("/admin/saveAccount")
@@ -106,7 +106,7 @@ public class AppController {
 				public String showRoomPage(Model model) {
 					List<Room> Room = roomRepository.findNoReservation();
 					model.addAttribute("room", Room);
-					return "/admin/rooms";
+					return "admin/rooms";
 				}
 				
 				@GetMapping("/admin/adminAddRoom")
@@ -120,21 +120,21 @@ public class AppController {
 						roomNum += 1;
 					Rooms.setNumber(roomNum);
 					model.addAttribute("room", Rooms);
-					return "/admin/admin_add_room";
+					return "admin/admin_add_room";
 				}
 				
 //				@GetMapping("/admin/adminExistingRoom")
 //				public String showFormExistingRoomPage(Model model) {
 //					Room Rooms = new Room();
 //					model.addAttribute("room", Rooms);
-//					return "/admin/admin_add_room_v2";
+//					return "admin/admin_add_room_v2";
 //				}	
 				
 				@GetMapping("/admin/updateRoom")
 				public String updateRoom(@RequestParam("roomID") int roomID, Model model) {
 					Room Room = roomRepository.findbyRoomId(roomID);
 					model.addAttribute("room", Room);
-					return "/admin/admin_update_room";
+					return "admin/admin_update_room";
 				}
 				
 				@PostMapping("/admin/saveRoom")
@@ -153,7 +153,7 @@ public class AppController {
 				public String showReservePage(Model model) {
 					List<Room> Room = roomRepository.findAllReservation();
 					model.addAttribute("room", Room);
-					return "/admin/reserve";
+					return "admin/reserve";
 				}	
 				
 				@GetMapping("/admin/cancelReservation")
@@ -165,7 +165,7 @@ public class AppController {
 
 		@RequestMapping("/staff/dashboard")
 		public String staffDashboard() {
-			return "/staff/dashboard";
+			return "staff/dashboard";
 		}
 		
 			//FOR STAFF ROOMS		
@@ -173,7 +173,7 @@ public class AppController {
 			public String showStaffRoomPage(Model model) {
 				List<Room> Room = roomRepository.findNoReservation();
 				model.addAttribute("room", Room);
-				return "/staff/rooms";
+				return "staff/rooms";
 			}
 			
 			@GetMapping("/staff/staffAddRoom")
@@ -187,14 +187,14 @@ public class AppController {
 					roomNum += 1;
 				Rooms.setNumber(roomNum);
 				model.addAttribute("room", Rooms);
-				return "/staff/staff_add_room";
+				return "staff/staff_add_room";
 			}			
 			
 			@GetMapping("/staff/updateRoom")
 			public String updateRoombyStaff(@RequestParam("roomID") int roomID, Model model) {
 				Room Room = roomRepository.findbyRoomId(roomID);
 				model.addAttribute("room", Room);
-				return "/staff/staff_update_room";
+				return "staff/staff_update_room";
 			}	
 			
 			@PostMapping("/staff/saveRoom")
@@ -213,7 +213,7 @@ public class AppController {
 			public String showStaffReservePage(Model model) {
 				List<Room> Room = roomRepository.findAllReservation();
 				model.addAttribute("room", Room);
-				return "/staff/reserve";
+				return "staff/reserve";
 			}
 			
 			@GetMapping("/staff/cancelReservation")
@@ -224,19 +224,19 @@ public class AppController {
 				
 		@RequestMapping("/user/dashboard")
 		public String userDashboard() {
-			return "/user/dashboard";
+			return "user/dashboard";
 		}	
 	
 			@GetMapping("/user/dashboard")
 			public String showUserDashboardPage(Model model) {
-				return "/user/dashboard";
+				return "user/dashboard";
 			}		
 		
 			@GetMapping("/user/room")
 			public String showUserRoomPage(Model model) {
 				List<Room> Room = roomRepository.findbyReservation("");
 				model.addAttribute("room", Room);
-				return "/user/rooms";
+				return "user/rooms";
 			}
 
 			@PostMapping("/user/userRoomReserveDetails")
@@ -250,7 +250,7 @@ public class AppController {
 			public String showUserShowReservePage(Model model) {
 				List<Room> Room = roomRepository.findReservation("User");
 				model.addAttribute("room", Room);
-				return "/user/reserve";
+				return "user/reserve";
 			}
 			
 			@GetMapping("/user/userCancelReservation")
@@ -264,7 +264,7 @@ public class AppController {
 			public String userReserveDetaisl(@RequestParam("roomID") int roomID, Model model) {
 				Room Room = roomRepository.findbyRoomId(roomID);
 				model.addAttribute("room", Room);
-				return "/user/reserve_details";
+				return "user/reserve_details";
 			}			
 			
 		
